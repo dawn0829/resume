@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蔡曉東 Dawn Tsai — AI Full-Stack Developer</title>
+  <meta name="description"
+    content="蔡曉東 Dawn Tsai 的個人履歷，AI Full-Stack Developer，擅長 Vue.js、PHP、Python、TensorFlow，具備企業級全端開發與 AI 整合經驗。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===== CSS 設計變數 ===== */
+    :root {
+      --primary: #0f4c81;
+      --primary-light: #1a6fc4;
+      --accent: #00b4d8;
+      --accent-2: #48cae4;
+      --dark: #0d1b2a;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --bg: #f0f4f8;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --gradient: linear-gradient(135deg, #0f4c81 0%, #1a6fc4 50%, #00b4d8 100%);
+      --gradient-dark: linear-gradient(135deg, #0d1b2a 0%, #0f4c81 100%);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+      --shadow: 0 4px 16px rgba(15, 76, 129, 0.12), 0 2px 4px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 40px rgba(15, 76, 129, 0.18), 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    /* ===== Reset & Base ===== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      font-size: 14px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== 版面容器 ===== */
+    .page {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--card);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* ===== 頂部橫幅 ===== */
+    .hero {
+      background: var(--gradient-dark);
+      padding: 14px 56px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(0, 180, 216, 0.12);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -40px;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(26, 111, 196, 0.1);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 164px minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas:
+        "profile intro badge"
+        "profile meta meta"
+        "tags tags tags";
+      gap: 8px 10px;
+      align-items: stretch;
+    }
+
+    .hero-profile,
+    .hero-intro,
+    .hero-badge,
+    .hero-meta,
+    .hero-tags {
+      min-width: 0;
+    }
+
+    .hero-profile {
+      grid-area: profile;
+      min-height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-intro {
+      grid-area: intro;
+      min-height: 96px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10px 8px;
+    }
+
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-name {
+      font-size: 38px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .hero-name span {
+      color: var(--accent);
+    }
+
+    .hero-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--accent-2);
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-meta {
+      grid-area: meta;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px 28px;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 58px;
+      padding: 6px 4px 0;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .hero-meta-item .icon {
+      width: 16px;
+      height: 16px;
+      fill: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .hero-meta-item a {
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+    }
+
+    .hero-tags {
+      grid-area: tags;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      align-content: start;
+      margin-top: 0;
+      padding-top: 2px;
+    }
+
+    .hero-tag {
+      background: rgba(0, 180, 216, 0.18);
+      color: var(--accent-2);
+      border: 1px solid rgba(0, 180, 216, 0.3);
+      padding: 5px 16px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0;
+      line-height: 1.2;
+    }
+
+    .hero-badge {
+      grid-area: badge;
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: var(--radius);
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 18px;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+      flex: 0 0 auto;
+      margin-right: 4px;
+    }
+
+    .status-label {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .status-value {
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    @media (max-width: 700px) {
+      .hero {
+        padding: 24px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "profile"
+          "intro"
+          "badge"
+          "meta"
+          "tags";
+        gap: 14px;
+        text-align: center;
+      }
+
+      .hero-profile,
+      .hero-intro,
+      .hero-badge {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .hero-meta {
+        flex-wrap: wrap;
+        justify-content: center;
+        justify-items: center;
+        gap: 10px;
+      }
+
+      .hero-tags {
+        justify-content: center;
+      }
+
+      .status-badge {
+        max-width: 342px;
+        padding: 10px 12px;
+        flex-wrap: wrap;
+        white-space: normal;
+      }
+
+    }
+
+    /* ===== Part 1 主體（全寬單欄） ===== */
+    .body-grid {
+      padding: 0;
+    }
+
+    /* Part 1 內容置中，給工作經歷更大空間 */
+    .main {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 44px 56px;
+    }
+
+    /* ===== Part 2 左右分欄 ===== */
+    .part2-body {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .part2-left {
+      background: #f8fafc;
+      border-right: 1px solid var(--border);
+      padding: 32px 24px;
+    }
+
+    /* ===== Section 標題 ===== */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      margin-bottom: 18px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .section-title .icon {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent);
+    }
+
+    .section-block {
+      margin-bottom: 32px;
+    }
+
+    /* ===== 技能標籤 ===== */
+    .skill-group {
+      margin-bottom: 16px;
+    }
+
+    .skill-group-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-tag {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .skill-tag.primary {
+      background: rgba(15, 76, 129, 0.07);
+      border-color: rgba(15, 76, 129, 0.2);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ===== 語言能力 ===== */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .lang-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .lang-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .lang-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .lang-dot.filled {
+      background: var(--primary-light);
+    }
+
+    .lang-dot.half {
+      background: linear-gradient(90deg, var(--primary-light) 50%, var(--border) 50%);
+    }
+
+    /* ===== 聯絡資訊（左欄） ===== */
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-item .icon {
+      width: 16px;
+      height: 16px;
+      fill: var(--primary-light);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .contact-item a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+
+    /* ===== 證照區塊 ===== */
+    .cert-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+
+    .cert-item .cert-org {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .cert-item .cert-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .cert-item .cert-date {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 3px;
+    }
+
+    .cert-badge-coming {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #d97706;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 50px;
+      margin-top: 4px;
+    }
+
+    /* ===== 時間軸工作經驗 ===== */
+    .timeline {
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 28px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--gradient);
+      border: 2px solid var(--card);
+      box-shadow: 0 0 0 2px var(--primary-light);
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .timeline-period {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(0, 180, 216, 0.1);
+      padding: 2px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
+    .timeline-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .timeline-body {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    /* ===== 成就項目 ===== */
+    .achievement-list {
+      list-style: none;
+      margin-top: 8px;
+    }
+
+    .achievement-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+
+    .achievement-list li::before {
+      content: '▸';
+      color: var(--accent);
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* ===== 成就卡片（可量化數字） ===== */
+    .metric-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 12px 0;
+    }
+
+    .metric-card {
+      background: linear-gradient(135deg, rgba(15, 76, 129, 0.05), rgba(0, 180, 216, 0.06));
+      border: 1px solid rgba(0, 180, 216, 0.2);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-align: center;
+    }
+
+    .metric-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* ===== 專案卡 ===== */
+    .project-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+    }
+
+    .project-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .project-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .project-period {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .project-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .project-tag {
+      background: rgba(0, 180, 216, 0.1);
+      color: var(--primary-light);
+      border: 1px solid rgba(0, 180, 216, 0.25);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    /* ===== 圖片展示區 ===== */
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      margin-bottom: 10px;
+    }
+
+    .image-grid img {
+      flex: 1 1 220px;
+      min-width: 180px;
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      display: block;
+    }
+
+    .image-grid-2 {
+      display: flex;
+    }
+
+    .cert-image-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .cert-image-block {
+      text-align: center;
+    }
+
+    .cert-image-block img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .cert-image-label {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 5px;
+    }
+
+    /* ===== 自傳 ===== */
+    .bio-text {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.85;
+      text-align: justify;
+    }
+
+    .bio-text strong {
+      color: var(--text);
+    }
+
+    /* ===== 分隔線 ===== */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    /* ===== Part 2 全寬版面 ===== */
+    .part2 {
+      background: var(--bg);
+      border-top: 3px solid var(--border);
+      padding: 0 0 40px;
+    }
+
+    .part2-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--gradient-dark);
+      color: var(--accent-2);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding: 14px 48px;
+      margin-bottom: 0;
+    }
+
+    .part2-heading svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .part2-section {
+      background: var(--card);
+      margin: 24px 32px 0;
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+    }
+
+    .part2-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .part2-section-title svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--accent);
+    }
+
+    /* 圖片橫排 */
+    .part2-img-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 14px 0;
+    }
+
+    .part2-img-block {
+      flex: 1 1 200px;
+      text-align: center;
+    }
+
+    .part2-img-block img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      display: block;
+    }
+
+    .part2-img-caption {
+      font-size: 11px;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+
+    .phone-shot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin: 14px 0 12px;
+    }
+
+    .phone-shot-grid img {
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      background: #0d1b2a;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .phone-shot-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-shot-grid img {
+        height: auto;
+        max-height: 520px;
+      }
+    }
+
+    /* 專案卡 */
+    .part2-project {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+
+    .part2-project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .part2-project-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .part2-project-period {
+      font-size: 11px;
+      color: var(--text-light);
+    }
+
+    .part2-project-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .part2-project-desc + .project-tags {
+      margin-top: 10px;
+    }
+
+    /* 佔位區 */
+    .part2-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 40px 20px;
+      background: repeating-linear-gradient(45deg,
+          transparent,
+          transparent 8px,
+          rgba(0, 180, 216, 0.04) 8px,
+          rgba(0, 180, 216, 0.04) 16px);
+      border: 2px dashed rgba(0, 180, 216, 0.3);
+      border-radius: var(--radius);
+    }
+
+    .part2-placeholder-icon {
+      font-size: 28px;
+      opacity: 0.5;
+    }
+
+    .part2-placeholder-text {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .part2-placeholder-sub {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+
+    /* 進修雙欄 */
+    .part2-cert-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .part2-cert-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--primary);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 16px 18px;
+    }
+
+    .part2-cert-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .part2-cert-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* ===== 頁尾 ===== */
+    .footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.45);
+      text-align: center;
+      padding: 18px 40px;
+      font-size: 11.5px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== 列印 / PDF 設定 ===== */
+    @media print {
+      body {
+        background: #fff;
+        font-size: 12.5px;
+      }
+
+      .page {
+        box-shadow: none;
+        max-width: 100%;
+      }
+
+      .hero {
+        padding: 32px 40px 28px;
+      }
+
+      .sidebar,
+      .main {
+        padding: 24px 28px;
+      }
+
+      .avoid-break {
+        page-break-inside: avoid;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      img {
+        max-height: 200px !important;
+      }
+
+      .footer {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <!-- ===== 頂部橫幅 ===== -->
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="hero-profile">
+          <img src="profile.jpg" alt="Profile Picture" class="profile-img">
+        </div>
+        <div class="hero-intro">
+          <div class="hero-name">蔡曉東 <span>Dawn</span></div>
+          <div class="hero-title">Full-Stack Developer</div>
+        </div>
+        <div class="hero-badge">
+          <div class="status-badge">
+            <span class="status-dot"></span>
+            <span class="status-label">就業狀態</span>
+            <span class="status-value">在職中</span>
+            <span class="status-label">兵役</span>
+            <span class="status-value">役畢 2024/2</span>
+          </div>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <!-- 電話圖示 -->
+            <svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1.02l-2.2 2.2z" />
+            </svg>
+            <span>0908-587-683</span>
+          </div>
+          <div class="hero-meta-item">
+            <!-- 信封圖示 -->
+            <svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+            <a href="mailto:w7823125@gmail.com">w7823125@gmail.com</a>
+          </div>
+          <div class="hero-meta-item">
+            <!-- 地點圖示 -->
+            <svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+            <span>台北市 ／ 台中市（可遠端）</span>
+          </div>
+        </div>
+        <div class="hero-tags">
+          <span class="hero-tag">#Vue 3</span>
+          <span class="hero-tag">#PHP</span>
+          <span class="hero-tag">#Python</span>
+          <span class="hero-tag">#Django</span>
+          <span class="hero-tag">#RESTful API</span>
+          <span class="hero-tag">#MySQL</span>
+          <span class="hero-tag">#PostgreSQL</span>
+          <span class="hero-tag">#WebSocket</span>
+          <span class="hero-tag">#TensorFlow</span>
+          <span class="hero-tag">#AI Agent</span>
+          <span class="hero-tag">#Linux</span>
+          <span class="hero-tag">#Git</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ===== Part 1 全寬主軸 ===== -->
+    <div class="body-grid">
+      <main class="main">
+
+        <!-- 個人簡介 / 自傳 -->
+        <div class="section-block avoid-break">
+          <div class="section-title">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z" />
+            </svg>
+            個人簡介
+          </div>
+          <p class="bio-text">
+            2023 年六月畢業於<strong>國立勤益科技大學資訊工程系</strong>，2024 年 2 月役畢後投入職場。
+            曾任<strong>桓基科技股份有限公司</strong>全端工程師，負責 EIP
+            產品介面效能優化、資安強化與後端 API 功能增新與優化；
+            目前轉職<strong>和瑩電腦股份有限公司</strong>從事多元接案，涵蓋搜救 GIS ( 無人機載具、海洋漂流模擬 )、台鐵機房監控及消防無線電等大型系統開發。
+            <br><br>
+            具備完整全端開發能力：前端熟練 <strong>Vue 3 / JavaScript</strong>，後端精通 <strong>PHP /
+              Python（Django、FastAPI）</strong>，並持續研究<strong>AI
+              Agent、深度學習</strong>等技術融入現有系統，理解使用情境、協助客戶解決痛點。熱衷鑽研語言與新技術，善用工具高效協作，我以成為公司「即戰力」為自身定位目標。
+          </p>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 工作經驗 -->
+        <div class="section-block">
+          <div class="section-title">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M20 6h-2.18c.07-.44.18-.88.18-1.34C18 2.54 15.96.5 13.52.5c-1.3 0-2.47.56-3.32 1.44-.85-.88-2.02-1.44-3.32-1.44C4.44.5 2.4 2.54 2.4 4.66c0 .46.11.9.18 1.34H.4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h19.6c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zM9.88 4.66C9.88 3.64 10.7 2.8 11.7 2.8c1 0 1.82.84 1.82 1.86 0 1.02-.82 1.86-1.82 1.86-1 0-1.82-.84-1.82-1.86z" />
+            </svg>
+            工作經驗
+          </div>
+
+          <div class="timeline">
+
+            <!-- ① 和瑩電腦（現職） -->
+            <div class="timeline-item avoid-break">
+              <div class="timeline-dot"></div>
+              <div class="timeline-header">
+                <div class="timeline-title">全端工程師（系統整合接案 · 30人以下）</div>
+                <div class="timeline-period">2026/01 — 至今</div>
+              </div>
+              <div class="timeline-sub">和瑩電腦股份有限公司 · 台北市</div>
+
+              <div class="timeline-body">
+                <strong style="color:var(--primary); font-size:12.5px;">▶ 搜救 GIS &amp; 漂流模擬系統</strong>
+                <ul class="achievement-list">
+                  <li>行政院消防署國家搜救中心 x 三商電腦 WebGIS 平台開發，整合海流 / 氣象漂流軌跡預測模擬與即時圖資疊加。</li>
+                  <li>支援搜救機、無人機（UAV）載具位置追蹤與任務調度介面。</li>
+                </ul>
+
+                <strong style="color:var(--primary); font-size:12.5px; display:block; margin-top:12px;">▶ 消防 &amp;
+                  桃市消防局無線電指揮系統</strong>
+                <ul class="achievement-list">
+                  <li>消防指揮系統前後端功能開發，整合無線電通訊狀態監控。</li>
+                </ul>
+
+                <strong style="color:var(--primary); font-size:12.5px; display:block; margin-top:12px;">▶
+                  台鐵機房監控平台</strong>
+                <ul class="achievement-list">
+                  <li>台灣鐵路公司機房設備健康度監控平台建置，提供設備狀態儀表板與告警機制。</li>
+                </ul>
+
+                <strong style="color:var(--primary); font-size:12.5px; display:block; margin-top:12px;">▶ 醫療系統（Server
+                  Infra 支援）</strong>
+                <ul class="achievement-list">
+                  <li>協助醫療單位伺服器基礎架構部署與維運支援（非應用層開發）。</li>
+                </ul>
+                <ul class="achievement-list">
+                  <li>協助客戶資訊安全稽核主機弱掃、網頁弱掃、滲透測試等資安項目。</li>
+                </ul>
+
+                <!-- 系統截圖 -->
+                <div class="image-grid image-grid-2" style="margin-top:10px;">
+                  <img src="drift.png" alt="漂流預測系統截圖">
+                  <img src="health.png" alt="台鐵機房健康度截圖">
+                </div>
+
+                <div class="project-tags" style="margin-top:12px;">
+                  <span class="project-tag">WebGIS</span>
+                  <span class="project-tag">漂流模擬</span>
+                  <span class="project-tag">UAV 載具</span>
+                  <span class="project-tag">消防指揮</span>
+                  <span class="project-tag">無線電監控</span>
+                  <span class="project-tag">Server Infra</span>
+                  <span class="project-tag">RESTful API</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ② 桓基科技（前職） -->
+            <div class="timeline-item avoid-break">
+              <div class="timeline-dot"></div>
+              <div class="timeline-header">
+                <div class="timeline-title">全端工程師（產品研發部 · 100–500 人）</div>
+                <div class="timeline-period">2024/07 — 2026/01</div>
+              </div>
+              <div class="timeline-sub">桓基科技股份有限公司 · 新竹市</div>
+
+              <!-- 可量化成就 -->
+              <div class="metric-row">
+                <div class="metric-card">
+                  <div class="metric-value">−1696<span style="font-size:13px;">kB</span></div>
+                  <div class="metric-label">Bundle 體積優化</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">7→5<span style="font-size:13px;">MB</span></div>
+                  <div class="metric-label">首次載入流量下降</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-value">嚴格 CSP</div>
+                  <div class="metric-label">資安弱掃通過</div>
+                </div>
+              </div>
+
+              <div class="timeline-body">
+                <strong style="color:var(--primary); font-size:12.5px;">▶ EIP 產品 — 介面功能開發</strong>
+                <ul class="achievement-list">
+                  <li>負責<strong>衛福部各級醫院</strong>及<strong>群創光電廠區</strong>專案，伺服信箱、行事曆、雲端硬碟模組開發。</li>
+                  <li>Vue 3 前端：實作寫信區高度動態計算、vuedraggable + Vuex 拖曳交互、手機版滾動載入更多郵件。</li>
+                  <li>新功能：SpeechSynthesis 朗讀，依 i18n 語系自動切換語音。</li>
+                  <li>長庚大學宿舍網路 Mikrotik Router 權限控管設定。</li>
+                </ul>
+
+                <strong style="color:var(--primary); font-size:12.5px; display:block; margin-top:12px;">▶ EIP 產品 —
+                  前端效能優化</strong>
+                <ul class="achievement-list">
+                  <li>Webpack Lazy load（Vue / TinyMCE / PDF / FullCalendar）+ splitChunk 切模組 + lodash 減量。</li>
+                  <li>Chunk vendor −446 kB、index −1250 kB，總 bundle 縮減 1696 kB；首次載入流量由 7 MB 降至 5 MB。</li>
+                  <li>建立 axios 統一管理層：Token 自動攔截、錯誤處理、前後端分工清晰化。</li>
+                </ul>
+
+                <strong style="color:var(--primary); font-size:12.5px; display:block; margin-top:12px;">▶ EIP 產品 —
+                  後端資料庫搜索優化</strong>
+                <ul class="achievement-list">
+                  <li>SQL 查詢優化：加入 index、移除模糊搜尋（LIKE）語法，顯著降低查詢耗時。</li>
+                  <li>後端回應格式與邏輯一致化；排序 / 過濾改由後端處理，減少前端運算。</li>
+                </ul>
+
+                <strong style="color:var(--primary); font-size:12.5px; display:block; margin-top:12px;">▶
+                  資安改善（弱掃）</strong>
+                <ul class="achievement-list">
+                  <li>CSP Header 強化：移除 inline script， Apache 依路由分「嚴格 / 寬鬆」白名單。</li>
+                  <li>移除弱加密算法，建立自動調整 Apache SSL 腳本，實現 TLS 1.3 白名單。</li>
+                </ul>
+
+                <!-- EIP 系統截圖 -->
+                <div class="image-grid image-grid-2" style="margin-top:10px;">
+                  <img src="EIP.png" alt="EIP 系統截圖">
+                </div>
+
+                <div class="project-tags" style="margin-top:12px;">
+                  <span class="project-tag">Vue 3</span>
+                  <span class="project-tag">PHP</span>
+                  <span class="project-tag">MySQL</span>
+                  <span class="project-tag">Webpack</span>
+                  <span class="project-tag">RESTful API</span>
+                  <span class="project-tag">CSP / TLS 1.3</span>
+                  <span class="project-tag">Redmine</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 實驗室志工 -->
+            <div class="timeline-item avoid-break">
+              <div class="timeline-dot"></div>
+              <div class="timeline-header">
+                <div class="timeline-title">AI &amp; 多媒體應用實驗室 志工 / E420 教室管理員</div>
+                <div class="timeline-period">2021/09 — 2023/06</div>
+              </div>
+              <div class="timeline-sub">國立勤益科技大學 · 台中市</div>
+              <div class="timeline-body">
+                <ul class="achievement-list">
+                  <li>使用 Clonezilla 進行課程軟體的克隆與還原（Shadow Defender），確保軟體派送順利。</li>
+                  <li>負責教室網路路由與 IP 配置，管理多品牌主機分配。</li>
+                  <li>協助教學自走車材料開發：演算法設計、編碼與功能測試。</li>
+                  <li>集中管理雲主機與機房（HPC）：vSphere、Windows AD、Proxmox、LDAP、Ubuntu Server。</li>
+                  <li>協助新創 AI 應用工程系教室的電腦與網路配線工程。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 學歷 -->
+        <div class="section-block avoid-break">
+          <div class="section-title">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
+            </svg>
+            學歷
+          </div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-header">
+                <div class="timeline-title">國立勤益科技大學</div>
+                <div class="timeline-period">2019/09 — 2023/06</div>
+              </div>
+              <div class="timeline-sub">資訊工程學系 · 大學畢業</div>
+              <div class="timeline-body">
+                <ul class="achievement-list">
+                  <li>在校期間表現優異（師徒制實習 <strong>95 分</strong>、機率 <strong>97 分</strong>）。</li>
+                  <li>參與<strong>第十七屆智慧生活科技研討會（ILT 2023）</strong>，發表論文：《基於 Arduino 開發之家用監控車》（HCD004）。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="divider">
+
+        <!-- 在校專案 -->
+        <div class="section-block">
+          <div class="section-title">
+            <svg class="icon" viewBox="0 0 24 24">
+              <path
+                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+            </svg>
+            在校專案成就
+          </div>
+
+          <!-- 專案一 -->
+          <div class="project-card avoid-break">
+            <div class="project-card-header">
+              <div class="project-name">🩺 生理訊號分析網站（ECG 異常檢測系統）</div>
+              <div class="project-period">2021/09 — 2022/06</div>
+            </div>
+            <p class="project-desc">
+              以低成本設備（Arduino + ESP32）採集心電圖數據，透過 Wi-Fi 傳輸至 Django 後端進行 TensorFlow 深度學習模型分析。
+              使用 WebSocket + Redis 實現即時繪圖（HighCharts.js），並整合 LineBot 推送異常提醒，協助使用者在各裝置監控健康狀態。
+              與實驗室教授及長安醫院徐錦池院長討論開發，歷時約 10 個月。
+            </p>
+            <div class="image-grid" style="margin-bottom:10px;">
+              <img src="ECG1.png" alt="ECG 系統介面 1">
+              <img src="ECG2.png" alt="ECG 系統介面 2">
+              <img src="ECG3.png" alt="ECG 系統介面 3">
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">Arduino</span>
+              <span class="project-tag">ESP32</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">TensorFlow</span>
+              <span class="project-tag">WebSocket</span>
+              <span class="project-tag">Redis</span>
+              <span class="project-tag">HighCharts.js</span>
+              <span class="project-tag">LineBot</span>
+            </div>
+          </div>
+
+          <!-- 專案二 -->
+          <div class="project-card avoid-break">
+            <div class="project-card-header">
+              <div class="project-name">🏨 飯店訂房系統（前後端分離）</div>
+              <div class="project-period">大學課程專題</div>
+            </div>
+            <p class="project-desc">
+              以 Vue 3 前端搭配 Flask 後端，實現前後端分離架構（RESTful API），負責資料雙向綁定、CRUD 流程設計，並採用 Robot Framework 撰寫自動化測試，整合 Gitflow
+              多人協作開發流程。
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Vue.js</span>
+              <span class="project-tag">Flask</span>
+              <span class="project-tag">Bootstrap</span>
+              <span class="project-tag">SQL</span>
+              <span class="project-tag">RESTful API</span>
+              <span class="project-tag">Robot Framework</span>
+              <span class="project-tag">Gitflow</span>
+            </div>
+          </div>
+
+          <!-- 專案三 -->
+          <div class="project-card avoid-break">
+            <div class="project-card-header">
+              <div class="project-name">🤖 跌倒檢測系統（年長者照護）</div>
+              <div class="project-period">2022 — 2023 / ILT 2023 投稿</div>
+            </div>
+            <p class="project-desc">
+              利用實驗室3D列印自走車搭載WebCam，透過 OpenPose 預訓練模型進行動作辨識。負責關節點標注、自走車 C++ 移動函式庫開發，及 ILT
+              研討會技術報告準備。最終成果提交至大專院校智慧生活科技研討會（ILT
+              2023）。
+            </p>
+            <div class="image-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:10px;">
+              <img src="paper.png" alt="ILT 2023 研討會論文">
+              <img src="lab_cert.png" alt="實驗室志工證明">
+            </div>
+            <div class="project-tags">
+              <span class="project-tag">C++</span>
+              <span class="project-tag">Django</span>
+              <span class="project-tag">OpenPose</span>
+              <span class="project-tag">TensorFlow</span>
+              <span class="project-tag">WebSocket</span>
+              <span class="project-tag">Base64</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div><!-- /.body-grid (Part 1 結束) -->
+
+    <!-- ===== Part 2: 左右分欄 ===== -->
+    <div class="part2">
+      <div class="part2-heading">
+        <svg viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+        </svg>
+        專案與其他
+      </div>
+
+      <div class="part2-body">
+
+        <!-- ====== Part 2 左欄：技能 / 語言 / 證照 / 特質 ====== -->
+        <div class="part2-left">
+
+          <!-- 專業技能 -->
+          <div class="section-block avoid-break">
+            <div class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+              </svg>
+              專業技能
+            </div>
+            <div class="skill-group-label"
+              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
+              前端</div>
+            <div class="skill-tags" style="margin-bottom:10px;">
+              <span class="skill-tag primary">Vue 3</span>
+              <span class="skill-tag primary">JavaScript</span>
+              <span class="skill-tag">jQuery</span>
+              <span class="skill-tag">Webpack</span>
+              <span class="skill-tag">Vite</span>
+            </div>
+            <div class="skill-group-label"
+              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
+              後端</div>
+            <div class="skill-tags" style="margin-bottom:10px;">
+              <span class="skill-tag primary">PHP</span>
+              <span class="skill-tag primary">Python</span>
+              <span class="skill-tag">Django</span>
+              <span class="skill-tag">Flask</span>
+              <span class="skill-tag">FastAPI</span>
+            </div>
+            <div class="skill-group-label"
+              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
+              DB &amp; DevOps</div>
+            <div class="skill-tags" style="margin-bottom:10px;">
+              <span class="skill-tag primary">MySQL</span>
+              <span class="skill-tag">PostgreSQL</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">Linux</span>
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Docker</span>
+            </div>
+            <div class="skill-group-label"
+              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
+              AI &amp; IoT</div>
+            <div class="skill-tags">
+              <span class="skill-tag">TensorFlow</span>
+              <span class="skill-tag">Google ADK</span>
+              <span class="skill-tag">NVIDIA Isaac</span>
+              <span class="skill-tag">Arduino</span>
+            </div>
+          </div>
+
+          <!-- 語言能力 -->
+          <div class="section-block avoid-break">
+            <div class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path
+                  d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" />
+              </svg>
+              語言能力
+            </div>
+            <div class="lang-item">
+              <div class="lang-name">英文</div>
+              <div class="lang-dots">
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot half"></div>
+                <div class="lang-dot"></div>
+                <div class="lang-dot"></div>
+              </div>
+            </div>
+            <div class="lang-item">
+              <div class="lang-name">日文</div>
+              <div class="lang-dots">
+                <div class="lang-dot filled"></div>
+                <div class="lang-dot half"></div>
+                <div class="lang-dot"></div>
+                <div class="lang-dot"></div>
+                <div class="lang-dot"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 證照 -->
+          <div class="section-block avoid-break">
+            <div class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path
+                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93C9.33 17.79 7 14.5 7 11V7.18L12 5z" />
+              </svg>
+              證照 &amp; 認證
+            </div>
+            <div class="cert-item">
+              <div class="cert-org">Silicon Stone Education</div>
+              <div class="cert-name">SSE Python 程式語言國際認證</div>
+              <div class="cert-date">Python Language Today</div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-org">NVIDIA</div>
+              <div class="cert-name">Certificate of Competency<br>運用 NVIDIA Isaac 開發高效機器人</div>
+              <div class="cert-date">2026 / 08 / 17</div>
+            </div>
+            <div class="cert-item">
+              <div class="cert-org">Google</div>
+              <div class="cert-name">Google ADK – AI Agent 工作坊<br>Google Skill 認證</div>
+              <div class="cert-badge-coming">⏳ 即將取得</div>
+            </div>
+            <div class="cert-image-row" style="margin-top:14px;">
+              <div class="cert-image-block">
+                <img src="certificate.png" alt="SSE Python">
+                <div class="cert-image-label">SSE Python</div>
+              </div>
+              <div class="cert-image-block">
+                <img src="nvidia.png" alt="NVIDIA">
+                <div class="cert-image-label">NVIDIA Isaac</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 個人特質 -->
+          <div class="section-block avoid-break">
+            <div class="section-title">
+              <svg class="icon" viewBox="0 0 24 24">
+                <path
+                  d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z" />
+              </svg>
+              個人特質
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+              <div
+                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
+                <div style="font-size:18px; margin-bottom:3px;">🔥</div>
+                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">勇於挑戰</div>
+                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">自主學習新框架與語言。</div>
+              </div>
+              <div
+                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
+                <div style="font-size:18px; margin-bottom:3px;">🛠️</div>
+                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">善用工具</div>
+                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">AI 工具與編輯器提升效率。</div>
+              </div>
+              <div
+                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
+                <div style="font-size:18px; margin-bottom:3px;">📚</div>
+                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">廣泛閱讀</div>
+                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">追蹤前沿技術趨勢。</div>
+              </div>
+              <div
+                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
+                <div style="font-size:18px; margin-bottom:3px;">🤝</div>
+                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">團隊協作</div>
+                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">Gitflow 與 Redmine 協作。</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.part2-left -->
+
+        <!-- ====== Part 2 右欄：專案 / 進修 ====== -->
+        <div class="part2-right">
+
+          <!-- Side Projects -->
+          <div class="part2-section avoid-break">
+            <div class="part2-section-title">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+              Side Projects
+            </div>
+
+            <div class="part2-project">
+              <div class="part2-project-header">
+                <div class="part2-project-name">股市 APP</div>
+                <div class="part2-project-period">Side Project</div>
+              </div>
+              <p class="part2-project-desc">
+                以手機使用情境設計的股市資訊應用，整合股票行情瀏覽、自選股追蹤與資料視覺化介面，強調資訊層級、即時狀態與小螢幕操作效率。
+              </p>
+              <div class="phone-shot-grid">
+                <img src="sideproject1a.png" alt="股市 APP 手機版畫面 1">
+                <img src="sideproject1b.png" alt="股市 APP 手機版畫面 2">
+                <img src="sideproject1c.png" alt="股市 APP 手機版畫面 3">
+              </div>
+              <div class="project-tags">
+                <span class="project-tag">Mobile UI</span>
+                <span class="project-tag">Stock Data</span>
+                <span class="project-tag">Vue 3</span>
+                <span class="project-tag">RESTful API</span>
+                <span class="project-tag">Data Visualization</span>
+              </div>
+            </div>
+
+            <div class="part2-project">
+              <div class="part2-project-header">
+                <div class="part2-project-name">聊天室 APP</div>
+                <div class="part2-project-period">Side Project</div>
+              </div>
+              <p class="part2-project-desc">
+                建立即時訊息互動流程，包含訊息送收、聊天室狀態同步與前後端資料串接，聚焦 WebSocket 即時通訊與使用者體驗。
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Vue 3</span>
+                <span class="project-tag">WebSocket</span>
+                <span class="project-tag">Django</span>
+                <span class="project-tag">RESTful API</span>
+                <span class="project-tag">MySQL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 近期進修 -->
+          <div class="part2-section avoid-break">
+            <div class="part2-section-title">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
+              </svg>
+              近期進修
+            </div>
+
+            <div class="part2-cert-row">
+              <div class="part2-cert-card" style="border-left-color:var(--primary);">
+                <div class="part2-cert-header">
+                  <div class="part2-cert-name" style="color:var(--primary-light);">Google ADK — AI Agent 開發工作坊</div>
+                  <div class="part2-project-period">2026</div>
+                </div>
+                <p class="part2-project-desc">
+                  由 Google 原廠講師指導，透過台北市青年局及資策會補助參與。課程涵蓋 Google ADK、MCP Server 串接、Function Calling、檔案系統操作等實作訓練。
+                  目標：將 AI Agent 技術融入全端開發體系，打造 AI Full-Stack Developer 位能。
+                </p>
+                <div class="project-tags">
+                  <span class="project-tag">Google ADK</span><span class="project-tag">AI Agent</span>
+                  <span class="project-tag">MCP Server</span><span class="project-tag">LLM</span>
+                  <span class="project-tag"
+                    style="background:rgba(245,158,11,0.1);color:#d97706;border-color:rgba(245,158,11,0.3);">⏳ Google
+                    Skill
+                    證照即將取得</span>
+                </div>
+              </div>
+
+              <div class="part2-cert-card" style="border-left-color:#76b900;">
+                <div class="part2-cert-header">
+                  <div class="part2-cert-name" style="color:#5a8a00;">NVIDIA Isaac — 開發高效機器人</div>
+                  <div class="part2-project-period">2026/08</div>
+                </div>
+                <p class="part2-project-desc">
+                  完成 NVIDIA Isaac 機器人開發課程，取得 NVIDIA Certificate of Competency，掌握機器人感知、規劃與控制整合開發流程。
+                </p>
+                <div class="project-tags">
+                  <span class="project-tag">NVIDIA Isaac</span><span class="project-tag">Robotics</span>
+                  <span class="project-tag"
+                    style="background:rgba(118,185,0,0.1);color:#5a8a00;border-color:rgba(118,185,0,0.3);">✅
+                    已取得認證</span>
+                </div>
+                <div style="margin-top:10px;">
+                  <img src="nvidia.png" alt="NVIDIA 認證"
+                    style="max-width:260px; border-radius:8px; border:1px solid var(--border);">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.part2-right -->
+      </div><!-- /.part2-body -->
+    </div><!-- /.part2 -->
+
+    <!-- ===== 頁尾 ===== -->
+    <footer class="footer">
+      蔡曉東 Dawn Tsai &nbsp;·&nbsp; w7823125@gmail.com &nbsp;·&nbsp; 0908-587-683 &nbsp;·&nbsp; 更新日期：2026 / 09
+    </footer>
+
+  </div>
+</body>
+
+</html>
