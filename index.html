@@ -63,7 +63,7 @@
     /* ===== 頂部橫幅 ===== */
     .hero {
       background: var(--gradient-dark);
-      padding: 14px 56px 24px;
+      padding: 10px 56px 16px;
       position: relative;
       overflow: hidden;
     }
@@ -94,12 +94,12 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: 164px minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: 140px minmax(0, 1fr) minmax(0, 1fr);
       grid-template-areas:
         "profile intro badge"
         "profile meta meta"
         "tags tags tags";
-      gap: 8px 10px;
+      gap: 4px 10px;
       align-items: stretch;
     }
 
@@ -113,7 +113,7 @@
 
     .hero-profile {
       grid-area: profile;
-      min-height: 160px;
+      min-height: 120px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -121,11 +121,11 @@
 
     .hero-intro {
       grid-area: intro;
-      min-height: 96px;
+      min-height: 60px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 10px 8px;
+      padding: 4px 8px;
     }
 
     .profile-img {
@@ -138,12 +138,12 @@
     }
 
     .hero-name {
-      font-size: 38px;
+      font-size: 26px;
       font-weight: 800;
       color: #fff;
       letter-spacing: 0;
       line-height: 1.1;
-      margin-bottom: 6px;
+      margin-bottom: 2px;
     }
 
     .hero-name span {
@@ -151,7 +151,7 @@
     }
 
     .hero-title {
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 500;
       color: var(--accent-2);
       letter-spacing: 0;
@@ -162,27 +162,27 @@
       grid-area: meta;
       display: flex;
       flex-wrap: nowrap;
-      gap: 8px 28px;
+      gap: 8px 16px;
       align-items: center;
       justify-content: space-between;
-      min-height: 58px;
-      padding: 6px 4px 0;
+      min-height: 32px;
+      padding: 2px 4px 0;
     }
 
     .hero-meta-item {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 5px;
       color: rgba(255, 255, 255, 0.82);
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 600;
       line-height: 1.35;
       white-space: nowrap;
     }
 
     .hero-meta-item .icon {
-      width: 16px;
-      height: 16px;
+      width: 13px;
+      height: 13px;
       fill: var(--accent);
       flex-shrink: 0;
     }
@@ -196,7 +196,7 @@
       grid-area: tags;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 12px;
+      gap: 6px 8px;
       align-content: start;
       margin-top: 0;
       padding-top: 2px;
@@ -206,9 +206,9 @@
       background: rgba(0, 180, 216, 0.18);
       color: var(--accent-2);
       border: 1px solid rgba(0, 180, 216, 0.3);
-      padding: 5px 16px;
+      padding: 3px 12px;
       border-radius: 50px;
-      font-size: 15px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: 0;
       line-height: 1.2;
@@ -216,7 +216,7 @@
 
     .hero-badge {
       grid-area: badge;
-      min-height: 96px;
+      min-height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -230,15 +230,15 @@
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius);
       width: 100%;
-      min-height: 50px;
-      padding: 12px 18px;
-      gap: 8px;
+      min-height: 34px;
+      padding: 6px 12px;
+      gap: 6px;
       white-space: nowrap;
     }
 
     .status-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: #22c55e;
       box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
@@ -248,7 +248,7 @@
 
     .status-label {
       color: rgba(255, 255, 255, 0.6);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       letter-spacing: 0;
     }
@@ -256,12 +256,12 @@
     .status-value {
       color: #fff;
       font-weight: 800;
-      font-size: 15px;
+      font-size: 13px;
     }
 
     @media (max-width: 700px) {
       .hero {
-        padding: 24px;
+        padding: 16px;
       }
 
       .hero-inner {
@@ -272,7 +272,7 @@
           "badge"
           "meta"
           "tags";
-        gap: 14px;
+        gap: 8px;
         text-align: center;
       }
 
@@ -315,18 +315,14 @@
       padding: 44px 56px;
     }
 
-    /* ===== Part 2 左右分欄 ===== */
+    /* ===== Part 2 (原雙欄，現為單欄結尾) ===== */
     .part2-body {
-      display: grid;
-      grid-template-columns: 270px 1fr;
-      gap: 0;
-      align-items: start;
+      display: block;
     }
 
     .part2-left {
       background: #f8fafc;
-      border-right: 1px solid var(--border);
-      padding: 32px 24px;
+      padding: 32px 40px;
     }
 
     /* ===== Section 標題 ===== */
@@ -687,9 +683,11 @@
       flex: 1 1 220px;
       min-width: 180px;
       max-width: 100%;
+      height: 130px;
       border-radius: 8px;
       border: 1px solid var(--border);
       object-fit: cover;
+      object-position: top;
       display: block;
     }
 
@@ -889,7 +887,7 @@
       margin-bottom: 10px;
     }
 
-    .part2-project-desc + .project-tags {
+    .part2-project-desc+.project-tags {
       margin-top: 10px;
     }
 
@@ -996,11 +994,39 @@
       }
 
       img {
-        max-height: 200px !important;
+        object-fit: contain !important;
+      }
+
+      /* 圖片展示區不被分頁切斷 */
+      .image-grid,
+      .image-grid-2,
+      .phone-shot-grid,
+      .cert-image-row {
+        page-break-inside: avoid;
+        break-inside: avoid;
       }
 
       .footer {
         display: none;
+      }
+
+      /* section 標題不孤立，確保後面跟著內容 */
+      .section-title,
+      .part2-section-title {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      /* 分隔線後不要換頁 */
+      hr.divider {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      /* 「專案與其他」標題列不孤立在頁底 */
+      .part2-heading {
+        page-break-after: avoid;
+        break-after: avoid;
       }
     }
   </style>
@@ -1024,8 +1050,10 @@
             <span class="status-dot"></span>
             <span class="status-label">就業狀態</span>
             <span class="status-value">在職中</span>
+            <span class="status-label">工作經歷</span>
+            <span class="status-value">2年</span>
             <span class="status-label">兵役</span>
-            <span class="status-value">役畢 2024/2</span>
+            <span class="status-value">2024/2 役畢</span>
           </div>
         </div>
         <div class="hero-meta">
@@ -1111,7 +1139,7 @@
           <div class="timeline">
 
             <!-- ① 和瑩電腦（現職） -->
-            <div class="timeline-item avoid-break">
+            <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="timeline-header">
                 <div class="timeline-title">全端工程師（系統整合接案 · 30人以下）</div>
@@ -1166,7 +1194,7 @@
             </div>
 
             <!-- ② 桓基科技（前職） -->
-            <div class="timeline-item avoid-break">
+            <div class="timeline-item">
               <div class="timeline-dot"></div>
               <div class="timeline-header">
                 <div class="timeline-title">全端工程師（產品研發部 · 100–500 人）</div>
@@ -1289,369 +1317,45 @@
 
         <hr class="divider">
 
-        <!-- 在校專案 -->
-        <div class="section-block">
+        <!-- 證照 & 認證 -->
+        <div class="section-block avoid-break">
           <div class="section-title">
             <svg class="icon" viewBox="0 0 24 24">
               <path
-                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93C9.33 17.79 7 14.5 7 11V7.18L12 5z" />
             </svg>
-            在校專案成就
+            證照 &amp; 認證
           </div>
-
-          <!-- 專案一 -->
-          <div class="project-card avoid-break">
-            <div class="project-card-header">
-              <div class="project-name">🩺 生理訊號分析網站（ECG 異常檢測系統）</div>
-              <div class="project-period">2021/09 — 2022/06</div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 12px;">
+            <div style="text-align: center;">
+              <img src="certificate.png" alt="SSE Python"
+                style="width: 100%; height: 160px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border);">
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; font-weight: 600;">SSE Python 國際認證
+              </div>
             </div>
-            <p class="project-desc">
-              以低成本設備（Arduino + ESP32）採集心電圖數據，透過 Wi-Fi 傳輸至 Django 後端進行 TensorFlow 深度學習模型分析。
-              使用 WebSocket + Redis 實現即時繪圖（HighCharts.js），並整合 LineBot 推送異常提醒，協助使用者在各裝置監控健康狀態。
-              與實驗室教授及長安醫院徐錦池院長討論開發，歷時約 10 個月。
-            </p>
-            <div class="image-grid" style="margin-bottom:10px;">
-              <img src="ECG1.png" alt="ECG 系統介面 1">
-              <img src="ECG2.png" alt="ECG 系統介面 2">
-              <img src="ECG3.png" alt="ECG 系統介面 3">
+            <div style="text-align: center;">
+              <img src="nvidia.png" alt="NVIDIA"
+                style="width: 100%; height: 160px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border);">
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; font-weight: 600;">NVIDIA Isaac
+                開發認證</div>
             </div>
-            <div class="project-tags">
-              <span class="project-tag">Arduino</span>
-              <span class="project-tag">ESP32</span>
-              <span class="project-tag">Django</span>
-              <span class="project-tag">TensorFlow</span>
-              <span class="project-tag">WebSocket</span>
-              <span class="project-tag">Redis</span>
-              <span class="project-tag">HighCharts.js</span>
-              <span class="project-tag">LineBot</span>
+            <div style="text-align: center;">
+              <img src="paper.png" alt="ILT 2023 研討會論文"
+                style="width: 100%; height: 160px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border);">
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; font-weight: 600;">ILT 2023 論文發表
+              </div>
             </div>
-          </div>
-
-          <!-- 專案二 -->
-          <div class="project-card avoid-break">
-            <div class="project-card-header">
-              <div class="project-name">🏨 飯店訂房系統（前後端分離）</div>
-              <div class="project-period">大學課程專題</div>
-            </div>
-            <p class="project-desc">
-              以 Vue 3 前端搭配 Flask 後端，實現前後端分離架構（RESTful API），負責資料雙向綁定、CRUD 流程設計，並採用 Robot Framework 撰寫自動化測試，整合 Gitflow
-              多人協作開發流程。
-            </p>
-            <div class="project-tags">
-              <span class="project-tag">Vue.js</span>
-              <span class="project-tag">Flask</span>
-              <span class="project-tag">Bootstrap</span>
-              <span class="project-tag">SQL</span>
-              <span class="project-tag">RESTful API</span>
-              <span class="project-tag">Robot Framework</span>
-              <span class="project-tag">Gitflow</span>
-            </div>
-          </div>
-
-          <!-- 專案三 -->
-          <div class="project-card avoid-break">
-            <div class="project-card-header">
-              <div class="project-name">🤖 跌倒檢測系統（年長者照護）</div>
-              <div class="project-period">2022 — 2023 / ILT 2023 投稿</div>
-            </div>
-            <p class="project-desc">
-              利用實驗室3D列印自走車搭載WebCam，透過 OpenPose 預訓練模型進行動作辨識。負責關節點標注、自走車 C++ 移動函式庫開發，及 ILT
-              研討會技術報告準備。最終成果提交至大專院校智慧生活科技研討會（ILT
-              2023）。
-            </p>
-            <div class="image-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:10px;">
-              <img src="paper.png" alt="ILT 2023 研討會論文">
-              <img src="lab_cert.png" alt="實驗室志工證明">
-            </div>
-            <div class="project-tags">
-              <span class="project-tag">C++</span>
-              <span class="project-tag">Django</span>
-              <span class="project-tag">OpenPose</span>
-              <span class="project-tag">TensorFlow</span>
-              <span class="project-tag">WebSocket</span>
-              <span class="project-tag">Base64</span>
+            <div style="text-align: center;">
+              <img src="lab_cert.png" alt="實驗室志工證明"
+                style="width: 100%; height: 160px; object-fit: contain; border-radius: 8px; border: 1px solid var(--border);">
+              <div style="font-size: 11px; color: var(--text-muted); margin-top: 6px; font-weight: 600;">勤益科大 實驗室志工
+              </div>
             </div>
           </div>
         </div>
+
       </main>
     </div><!-- /.body-grid (Part 1 結束) -->
-
-    <!-- ===== Part 2: 左右分欄 ===== -->
-    <div class="part2">
-      <div class="part2-heading">
-        <svg viewBox="0 0 24 24">
-          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
-        </svg>
-        專案與其他
-      </div>
-
-      <div class="part2-body">
-
-        <!-- ====== Part 2 左欄：技能 / 語言 / 證照 / 特質 ====== -->
-        <div class="part2-left">
-
-          <!-- 專業技能 -->
-          <div class="section-block avoid-break">
-            <div class="section-title">
-              <svg class="icon" viewBox="0 0 24 24">
-                <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
-              </svg>
-              專業技能
-            </div>
-            <div class="skill-group-label"
-              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
-              前端</div>
-            <div class="skill-tags" style="margin-bottom:10px;">
-              <span class="skill-tag primary">Vue 3</span>
-              <span class="skill-tag primary">JavaScript</span>
-              <span class="skill-tag">jQuery</span>
-              <span class="skill-tag">Webpack</span>
-              <span class="skill-tag">Vite</span>
-            </div>
-            <div class="skill-group-label"
-              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
-              後端</div>
-            <div class="skill-tags" style="margin-bottom:10px;">
-              <span class="skill-tag primary">PHP</span>
-              <span class="skill-tag primary">Python</span>
-              <span class="skill-tag">Django</span>
-              <span class="skill-tag">Flask</span>
-              <span class="skill-tag">FastAPI</span>
-            </div>
-            <div class="skill-group-label"
-              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
-              DB &amp; DevOps</div>
-            <div class="skill-tags" style="margin-bottom:10px;">
-              <span class="skill-tag primary">MySQL</span>
-              <span class="skill-tag">PostgreSQL</span>
-              <span class="skill-tag">Redis</span>
-              <span class="skill-tag">Linux</span>
-              <span class="skill-tag">Git</span>
-              <span class="skill-tag">Docker</span>
-            </div>
-            <div class="skill-group-label"
-              style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;">
-              AI &amp; IoT</div>
-            <div class="skill-tags">
-              <span class="skill-tag">TensorFlow</span>
-              <span class="skill-tag">Google ADK</span>
-              <span class="skill-tag">NVIDIA Isaac</span>
-              <span class="skill-tag">Arduino</span>
-            </div>
-          </div>
-
-          <!-- 語言能力 -->
-          <div class="section-block avoid-break">
-            <div class="section-title">
-              <svg class="icon" viewBox="0 0 24 24">
-                <path
-                  d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z" />
-              </svg>
-              語言能力
-            </div>
-            <div class="lang-item">
-              <div class="lang-name">英文</div>
-              <div class="lang-dots">
-                <div class="lang-dot filled"></div>
-                <div class="lang-dot filled"></div>
-                <div class="lang-dot half"></div>
-                <div class="lang-dot"></div>
-                <div class="lang-dot"></div>
-              </div>
-            </div>
-            <div class="lang-item">
-              <div class="lang-name">日文</div>
-              <div class="lang-dots">
-                <div class="lang-dot filled"></div>
-                <div class="lang-dot half"></div>
-                <div class="lang-dot"></div>
-                <div class="lang-dot"></div>
-                <div class="lang-dot"></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 證照 -->
-          <div class="section-block avoid-break">
-            <div class="section-title">
-              <svg class="icon" viewBox="0 0 24 24">
-                <path
-                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4l5 2.18V11c0 3.5-2.33 6.79-5 7.93C9.33 17.79 7 14.5 7 11V7.18L12 5z" />
-              </svg>
-              證照 &amp; 認證
-            </div>
-            <div class="cert-item">
-              <div class="cert-org">Silicon Stone Education</div>
-              <div class="cert-name">SSE Python 程式語言國際認證</div>
-              <div class="cert-date">Python Language Today</div>
-            </div>
-            <div class="cert-item">
-              <div class="cert-org">NVIDIA</div>
-              <div class="cert-name">Certificate of Competency<br>運用 NVIDIA Isaac 開發高效機器人</div>
-              <div class="cert-date">2026 / 08 / 17</div>
-            </div>
-            <div class="cert-item">
-              <div class="cert-org">Google</div>
-              <div class="cert-name">Google ADK – AI Agent 工作坊<br>Google Skill 認證</div>
-              <div class="cert-badge-coming">⏳ 即將取得</div>
-            </div>
-            <div class="cert-image-row" style="margin-top:14px;">
-              <div class="cert-image-block">
-                <img src="certificate.png" alt="SSE Python">
-                <div class="cert-image-label">SSE Python</div>
-              </div>
-              <div class="cert-image-block">
-                <img src="nvidia.png" alt="NVIDIA">
-                <div class="cert-image-label">NVIDIA Isaac</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 個人特質 -->
-          <div class="section-block avoid-break">
-            <div class="section-title">
-              <svg class="icon" viewBox="0 0 24 24">
-                <path
-                  d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z" />
-              </svg>
-              個人特質
-            </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-              <div
-                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
-                <div style="font-size:18px; margin-bottom:3px;">🔥</div>
-                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">勇於挑戰</div>
-                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">自主學習新框架與語言。</div>
-              </div>
-              <div
-                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
-                <div style="font-size:18px; margin-bottom:3px;">🛠️</div>
-                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">善用工具</div>
-                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">AI 工具與編輯器提升效率。</div>
-              </div>
-              <div
-                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
-                <div style="font-size:18px; margin-bottom:3px;">📚</div>
-                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">廣泛閱讀</div>
-                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">追蹤前沿技術趨勢。</div>
-              </div>
-              <div
-                style="background:var(--card); border:1px solid var(--border); border-radius:10px; padding:10px 12px;">
-                <div style="font-size:18px; margin-bottom:3px;">🤝</div>
-                <div style="font-weight:700; font-size:12px; margin-bottom:2px;">團隊協作</div>
-                <div style="font-size:11px; color:var(--text-muted); line-height:1.4;">Gitflow 與 Redmine 協作。</div>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /.part2-left -->
-
-        <!-- ====== Part 2 右欄：專案 / 進修 ====== -->
-        <div class="part2-right">
-
-          <!-- Side Projects -->
-          <div class="part2-section avoid-break">
-            <div class="part2-section-title">
-              <svg viewBox="0 0 24 24">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
-              Side Projects
-            </div>
-
-            <div class="part2-project">
-              <div class="part2-project-header">
-                <div class="part2-project-name">股市 APP</div>
-                <div class="part2-project-period">Side Project</div>
-              </div>
-              <p class="part2-project-desc">
-                以手機使用情境設計的股市資訊應用，整合股票行情瀏覽、自選股追蹤與資料視覺化介面，強調資訊層級、即時狀態與小螢幕操作效率。
-              </p>
-              <div class="phone-shot-grid">
-                <img src="sideproject1a.png" alt="股市 APP 手機版畫面 1">
-                <img src="sideproject1b.png" alt="股市 APP 手機版畫面 2">
-                <img src="sideproject1c.png" alt="股市 APP 手機版畫面 3">
-              </div>
-              <div class="project-tags">
-                <span class="project-tag">Mobile UI</span>
-                <span class="project-tag">Stock Data</span>
-                <span class="project-tag">Vue 3</span>
-                <span class="project-tag">RESTful API</span>
-                <span class="project-tag">Data Visualization</span>
-              </div>
-            </div>
-
-            <div class="part2-project">
-              <div class="part2-project-header">
-                <div class="part2-project-name">聊天室 APP</div>
-                <div class="part2-project-period">Side Project</div>
-              </div>
-              <p class="part2-project-desc">
-                建立即時訊息互動流程，包含訊息送收、聊天室狀態同步與前後端資料串接，聚焦 WebSocket 即時通訊與使用者體驗。
-              </p>
-              <div class="project-tags">
-                <span class="project-tag">Vue 3</span>
-                <span class="project-tag">WebSocket</span>
-                <span class="project-tag">Django</span>
-                <span class="project-tag">RESTful API</span>
-                <span class="project-tag">MySQL</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- 近期進修 -->
-          <div class="part2-section avoid-break">
-            <div class="part2-section-title">
-              <svg viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z" />
-              </svg>
-              近期進修
-            </div>
-
-            <div class="part2-cert-row">
-              <div class="part2-cert-card" style="border-left-color:var(--primary);">
-                <div class="part2-cert-header">
-                  <div class="part2-cert-name" style="color:var(--primary-light);">Google ADK — AI Agent 開發工作坊</div>
-                  <div class="part2-project-period">2026</div>
-                </div>
-                <p class="part2-project-desc">
-                  由 Google 原廠講師指導，透過台北市青年局及資策會補助參與。課程涵蓋 Google ADK、MCP Server 串接、Function Calling、檔案系統操作等實作訓練。
-                  目標：將 AI Agent 技術融入全端開發體系，打造 AI Full-Stack Developer 位能。
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">Google ADK</span><span class="project-tag">AI Agent</span>
-                  <span class="project-tag">MCP Server</span><span class="project-tag">LLM</span>
-                  <span class="project-tag"
-                    style="background:rgba(245,158,11,0.1);color:#d97706;border-color:rgba(245,158,11,0.3);">⏳ Google
-                    Skill
-                    證照即將取得</span>
-                </div>
-              </div>
-
-              <div class="part2-cert-card" style="border-left-color:#76b900;">
-                <div class="part2-cert-header">
-                  <div class="part2-cert-name" style="color:#5a8a00;">NVIDIA Isaac — 開發高效機器人</div>
-                  <div class="part2-project-period">2026/08</div>
-                </div>
-                <p class="part2-project-desc">
-                  完成 NVIDIA Isaac 機器人開發課程，取得 NVIDIA Certificate of Competency，掌握機器人感知、規劃與控制整合開發流程。
-                </p>
-                <div class="project-tags">
-                  <span class="project-tag">NVIDIA Isaac</span><span class="project-tag">Robotics</span>
-                  <span class="project-tag"
-                    style="background:rgba(118,185,0,0.1);color:#5a8a00;border-color:rgba(118,185,0,0.3);">✅
-                    已取得認證</span>
-                </div>
-                <div style="margin-top:10px;">
-                  <img src="nvidia.png" alt="NVIDIA 認證"
-                    style="max-width:260px; border-radius:8px; border:1px solid var(--border);">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div><!-- /.part2-right -->
-      </div><!-- /.part2-body -->
-    </div><!-- /.part2 -->
 
     <!-- ===== 頁尾 ===== -->
     <footer class="footer">
